@@ -1,66 +1,70 @@
-## Foundry
+# Minimal DAO Project
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+## Overview
 
-Foundry consists of:
+This project implements a Minimal DAO (Decentralized Autonomous Organization) using smart contracts. It's built on the Ethereum blockchain and utilizes OpenZeppelin's governance contracts. The DAO controls a contract, and every transaction is subject to a vote.
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+## Features
 
-## Documentation
+1. DAO-controlled contract
+2. Voting mechanism for all transactions
+3. ERC20 token integration (current implementation uses a default model)
 
-https://book.getfoundry.sh/
+## Project Structure
 
-## Usage
+The project consists of the following main components:
 
-### Build
+- `src/`: Source code for the smart contracts
+- `test/`: Test files for the smart contracts
 
-```shell
-$ forge build
-```
+## Smart Contracts
 
-### Test
+### Box.sol
 
-```shell
-$ forge test
-```
+A simple contract that stores a number. It's owned by the DAO and can only be updated through governance proposals.
 
-### Format
+### MyGovernor.sol
 
-```shell
-$ forge fmt
-```
+The main governance contract that inherits from various OpenZeppelin governance modules. It handles proposal creation, voting, and execution.
 
-### Gas Snapshots
+### GovToken.sol
 
-```shell
-$ forge snapshot
-```
+An ERC20 token contract used for governance voting power.
 
-### Anvil
+### TimeLock.sol
 
-```shell
-$ anvil
-```
+A timelock contract that adds a delay between the passing of a proposal and its execution.
 
-### Deploy
+## Testing
 
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
+The project includes comprehensive tests to ensure the correct functioning of the governance mechanism. Key test cases include:
 
-### Cast
+- Verifying that the Box contract can't be updated without governance
+- Testing the full governance flow from proposal creation to execution
 
-```shell
-$ cast <subcommand>
-```
+## Setup and Usage
 
-### Help
+(Add instructions for setting up and running the project, including any dependencies and environment setup)
 
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+## Development
+
+This project was developed as part of the Foundry course by Patrick Collins. It uses the Foundry framework for Ethereum development.
+
+## License
+
+This project is licensed under the MIT License.
+
+## Contributors
+
+- Frederik Pietratus
+
+## Acknowledgements
+
+- OpenZeppelin for their governance contracts
+- Patrick Collins for the Foundry course
+
+## Future Improvements
+
+- Implement a more sophisticated token model for governance
+- Enhance the voting mechanism
+- Add more features to the governed contract (Box.sol)
